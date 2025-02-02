@@ -29,13 +29,22 @@ let counter = 0;
 
 const intervalId = setInterval(() => {
   showNotification();
-  setTimeout(hideNotification, 3000);
+  timeoutId = setTimeout(hideNotification, 2000);
 
   if (counter >= 5) {
     clearInterval(intervalId);
   }
-}, 7000);
+}, 4000);
 
+notification.children[0].addEventListener("click", () => {
+  hideNotification();
+  clearTimeout(timeoutId);
+});
+
+notification.children[1].addEventListener("click", () => {
+  hideNotification();
+  clearInterval(intervalId);
+});
 //! =======================================================
 function showNotification() {
   notification.classList.add("is-visible");
